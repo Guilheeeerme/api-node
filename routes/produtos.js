@@ -17,21 +17,23 @@ router
   .get("/:id", (req, res) => {
     const id = req.params.id;
     res.status(201).send({
-      message: "Método GET para buscar um ID específico",
+      message: "Método GET para buscar um produto por ID específico",
       id,
     });
   })
   .patch("/:id", (req, res) => {
     const id = req.params.id;
     res.status(201).send({
-      message: "Método PATCH/PUT para buscar um ID específico e atualizar",
+      message:
+        "Método PATCH/PUT para buscar um produto por ID específico e atualizar",
       id,
     });
   })
   .delete("/:id", (req, res) => {
     const id = req.params.id;
-    res.status(201).send({
-      message: "Método DELETE para buscar um ID específico e excluir",
+    res.status(204).send({
+      message:
+        "Método DELETE para buscar um produto por ID específico e excluir",
       id,
     });
   });
