@@ -8,8 +8,10 @@ router
     });
   })
   .post("/", (req, res) => {
+    const pedido = { id_pedido: req.body.id, qtde: req.body.qtde };
     res.status(201).send({
       message: "Método POST para inserir um pedido",
+      pedidoCriado: pedido,
     });
   });
 

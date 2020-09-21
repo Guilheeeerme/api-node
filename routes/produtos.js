@@ -8,8 +8,10 @@ router
     });
   })
   .post("/", (req, res) => {
+    const pedido = { name: req.body.name, preco: req.body.preco };
     res.status(201).send({
       message: "Método POST para inserir um produto",
+      produtoCriado: pedido,
     });
   });
 
