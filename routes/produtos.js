@@ -1,19 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const mysqlConnection = require("../mysql"); // Neste arquivo já está importando o mysql
 
-router
-  .get("/", (req, res) => {
-    res.status(200).send({
-      message: "Método GET para buscar todos os produtos",
-    });
-  })
-  .post("/", (req, res) => {
-    const pedido = { name: req.body.name, preco: req.body.preco };
+router.get("/", (req, res) => {});
+
+router.post("/", (req, res) => {
+  let data = { nome: req.body.nome, preco: req.body.preco };
+  let sql = "INSERT INTO produtos SET ?";
+  mysqlConnection.query(sql, data, (err, results) => {
+    if (err) throw err;
     res.status(201).send({
-      message: "Método POST para inserir um produto",
-      produtoCriado: pedido,
+      message: "Produto inserido com sucesso",
+      produto: data,
     });
   });
+});
 
 router
   .get("/:id", (req, res) => {
