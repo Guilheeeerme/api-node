@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const rotaProdutos = require("./routes/produtos");
 const rotaPedidos = require("./routes/pedidos");
+const rotaCadastro = require("./routes/usuarios");
 
 app.use(morgan("dev"));
 
@@ -15,6 +16,7 @@ app.use(express.json()); // JSON de entrada no body
 // Rotas
 app.use("/produtos", rotaProdutos);
 app.use("/pedidos", rotaPedidos);
+app.use("/cadastro", rotaCadastro);
 
 app.use(cors);
 

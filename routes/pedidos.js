@@ -3,18 +3,28 @@ const router = express.Router();
 const mysqlConnection = require("../mysql");
 
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM pedidos;";
+  const sql = `SELECT pedidos.id_pedido,
+                      pedidos.quantidade,
+                      produtos.id_produto,
+                      produtos.nome,
+                      produtos.preco
+              FROM 		pedidos
+          INNER JOIN 	produtos
+                ON 		produtos.id_produto = pedidos.id_produto;`;
   mysqlConnection.query(sql, (err, result) => {
     if (err) res.status(400).send({ error: err.message });
 
     // Ex de "Documentar" caso seja uma API pública, só um exemplo... Acrescentaria mais detalhes, detalhe sobre o tipo de dado no caso de um POST e tals
     const response = {
-      quantidade: result.length,
       pedidos: result.map((pedido) => {
         return {
           id_pedido: pedido.id_pedido,
-          id_produto: pedido.id_produto,
           quantidade: pedido.quantidade,
+          produto: {
+            id_produto: pedido.id_produto,
+            nome: pedido.nome,
+            preco: pedido.preco,
+          },
           request: {
             tipo: "GET",
             descricao: "Retorna detalhes do pedido",
