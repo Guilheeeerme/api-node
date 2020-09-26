@@ -16,7 +16,7 @@ app.use(express.json()); // JSON de entrada no body
 // Rotas
 app.use("/produtos", rotaProdutos);
 app.use("/pedidos", rotaPedidos);
-app.use("/cadastro", rotaCadastro);
+app.use("/usuarios", rotaCadastro);
 
 app.use(cors);
 
