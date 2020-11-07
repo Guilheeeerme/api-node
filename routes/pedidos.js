@@ -3,9 +3,9 @@ const router = express.Router();
 
 const PedidosController = require("../controllers/pedidos-controller");
 
-router.get("/", PedidosController.getPedidos);
-router.post("/", PedidosController.postPedidos);
-router.get("/:id_pedido", PedidosController.getUmPedido);
-router.delete("/:id_pedido", PedidosController.deletePedido);
+router.get("/", PedidosController.getOrders);
+router.post("/", PedidosController.createOrders);
+router.get("/:id_pedido", PedidosController.getAnOrder);
+router.delete("/:id_pedido", PedidosController.deleteOrder);
 
 module.exports = router;

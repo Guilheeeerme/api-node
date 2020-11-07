@@ -1,6 +1,6 @@
 const mysqlConnection = require("../mysql");
 
-exports.getProdutos = (req, res) => {
+exports.getProducts = (req, res) => {
   const sql = "SELECT * FROM produtos;";
   mysqlConnection.query(sql, (err, produtos) => {
     if (err) res.status(400).send({ error: err.message });
@@ -25,7 +25,7 @@ exports.getProdutos = (req, res) => {
   });
 };
 
-exports.postProdutos = (req, res) => {
+exports.createProducts = (req, res) => {
   const data = { nome: req.body.nome, preco: req.body.preco };
   const sql = "INSERT INTO produtos SET ?";
   mysqlConnection.query(sql, data, (err, results) => {
@@ -37,7 +37,7 @@ exports.postProdutos = (req, res) => {
   });
 };
 
-exports.getUmProduto = (req, res) => {
+exports.getProduct = (req, res) => {
   const id = req.params.id_produto;
   const sql = "SELECT * FROM produtos WHERE id_produto = ?";
   mysqlConnection.query(sql, id, (err, produto) => {
@@ -49,7 +49,7 @@ exports.getUmProduto = (req, res) => {
   });
 };
 
-exports.patchUmProduto = (req, res) => {
+exports.updateProduct = (req, res) => {
   const id = req.params.id_produto;
   const { nome, preco } = req.body;
 
@@ -65,7 +65,7 @@ exports.patchUmProduto = (req, res) => {
   });
 };
 
-exports.deleteProduto = (req, res) => {
+exports.deleteProduct = (req, res) => {
   mysqlConnection.query(
     "DELETE FROM produtos WHERE id_produto = ?",
     [req.params.id_produto],

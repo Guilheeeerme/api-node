@@ -1,7 +1,7 @@
 const mysqlConnection = require("../mysql");
 const bcrypt = require("bcrypt");
 
-exports.postUsuarios = async (req, res, next) => {
+exports.createUser = async (req, res, next) => {
   const { email, senha } = req.body;
   const hash = await bcrypt.hash(senha, 10);
   const data = { email: email, senha: hash };

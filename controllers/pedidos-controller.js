@@ -1,6 +1,6 @@
 const mysqlConnection = require("../mysql");
 
-exports.getPedidos = (req, res) => {
+exports.getOrders = (req, res) => {
   const sql = `SELECT pedidos.id_pedido,
                       pedidos.quantidade,
                       produtos.id_produto,
@@ -35,7 +35,7 @@ exports.getPedidos = (req, res) => {
   });
 };
 
-exports.postPedidos = (req, res) => {
+exports.createOrders = (req, res) => {
   // prettier-ignore
   const data = { id_produto: req.body.id_produto, quantidade: req.body.quantidade, };
 
@@ -54,7 +54,7 @@ exports.postPedidos = (req, res) => {
   });
 };
 
-exports.getUmPedido = (req, res) => {
+exports.getAnOrder = (req, res) => {
   const id = req.params.id_pedido;
   const sql = "SELECT * FROM pedidos WHERE id_pedido = ?";
   mysqlConnection.query(sql, id, (err, pedido) => {
@@ -66,7 +66,7 @@ exports.getUmPedido = (req, res) => {
   });
 };
 
-exports.deletePedido = (req, res) => {
+exports.deleteOrder = (req, res) => {
   mysqlConnection.query(
     "DELETE FROM pedidos WHERE id_pedido = ?",
     [req.params.id_pedido],
