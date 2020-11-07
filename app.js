@@ -3,9 +3,9 @@ const app = express(); // Instância do express
 const morgan = require("morgan"); // Monitora as requisiçoes e mostra logs no console
 const cors = require("cors");
 
-const rotaProdutos = require("./routes/produtos");
-const rotaPedidos = require("./routes/pedidos");
-const rotaCadastro = require("./routes/usuarios");
+const routeProducts = require("./routes/produtos");
+const routeOrders = require("./routes/pedidos");
+const userRoute = require("./routes/usuarios");
 
 app.use(morgan("dev"));
 
@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: false })); // Apenas dados simples
 app.use(express.json()); // JSON de entrada no body
 
 // Rotas
-app.use("/produtos", rotaProdutos);
-app.use("/pedidos", rotaPedidos);
-app.use("/usuarios", rotaCadastro);
+app.use("/produtos", routeProducts);
+app.use("/pedidos", routeOrders);
+app.use("/usuarios", userRoute);
 
 app.use(cors);
 
